@@ -30,7 +30,7 @@ public class Washing {
     private String typeCar;
     //@Column(columnDefinition ="varchar(5)check(typeWashing='normal' or typeWashing='polish' or typeWashing='steam')")
     @NotEmpty(message = "name should be not Empty")
-    @Column(columnDefinition = "varchar(20) not null  ")
+   @Column(columnDefinition = "varchar(20) not null  ")
     @Pattern(regexp = "normal|polish|steam")
     private String typeWashing;
     @NotNull(message = "must not be null")
@@ -38,11 +38,12 @@ public class Washing {
     @Positive
     private int price;
     @NotEmpty(message = "name should be not Empty")
-    @Column(columnDefinition = "varchar(20) not null  ")
-    //@Column(columnDefinition ="varchar(5)check(status='Not Started' or status='in Progress' or status='Completed')")
+
+    @Column(columnDefinition ="varchar(5)check(status='Not Started' or status='in Progress' or status='Completed')")
     @Pattern(regexp = "Not Started|in Progress|Completed")
     private String status;
-    private LocalDate dateWash;
+
+    private String dateWash;
 
 
 

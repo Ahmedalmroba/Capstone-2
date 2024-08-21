@@ -18,22 +18,18 @@ public class Users {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Integer id;
 
-        @NotEmpty(message = "name should be not Empty")
-        @Column(columnDefinition = "varchar(20) not null unique ")
-        @Min(5)
+       @Column(columnDefinition = "varchar(20) not null unique ")
         private String username;
-        @NotEmpty(message = "name should be not Empty")
-        @Column(columnDefinition = "int not null  ")
-        private int password;
+       @Column(columnDefinition = "int not null  ")
+        private String password;
 
-        @NotEmpty(message = "must not be empty")
-        @Column(columnDefinition = "varchar(10) not null unique ")
+       @Column(columnDefinition = "varchar(20) not null unique ")
         @Email
         private String email;
-        @NotEmpty(message = "must not be empty")
-        @Column(columnDefinition = "varchar(10) not null unique ")
+       @NotEmpty(message = "must not be empty")
+       @Column(columnDefinition = "varchar(10) not null unique ")
         private  String phoneNumber;
-        //@Column(columnDefinition ="varchar(5)check(vehicle='car' or vehicle='motorcycle' or vehicle='truck')")
+        @Column(columnDefinition ="varchar(5)check(vehicle='car' or vehicle='motorcycle' or vehicle='truck')")
         @Pattern(regexp = "car|motorcycle|truck")
         private  String vehicle;
 }

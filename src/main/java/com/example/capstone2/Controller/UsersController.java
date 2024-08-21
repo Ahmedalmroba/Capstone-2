@@ -24,21 +24,15 @@ public class UsersController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity addUser(@Valid @RequestBody Users users, Errors errors) {
-        if (errors.hasErrors()) {
-            String Message = errors.getFieldError().getDefaultMessage();
-            return ResponseEntity.status(400).body(Message);
-        }
+    public ResponseEntity addUser(@Valid @RequestBody Users users) {
+
         usersService.addUser(users);
         return ResponseEntity.status(200).body("User added successfully");
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity updateUser(@PathVariable Integer id, @Valid @RequestBody Users users, Errors errors) {
-        if (errors.hasErrors()) {
-            String Message = errors.getFieldError().getDefaultMessage();
-            return ResponseEntity.status(400).body(Message);
-        }
+    public ResponseEntity updateUser(@PathVariable Integer id, @Valid @RequestBody Users users) {
+
         usersService.updateUser(id, users);
         return ResponseEntity.status(200).body("User updated successfully");
     }
@@ -48,10 +42,10 @@ public class UsersController {
         return ResponseEntity.status(200).body("User deleted successfully");
     }
 
-    @GetMapping("/{userId}/wash-history")
-    public ResponseEntity getUserWashHistory(@PathVariable Integer userId) {
-        List<Washing> washHistory = usersService.getUserWashHistory(userId);
-        return ResponseEntity.status(200).body(washHistory);
+//    @GetMapping("/{userId}/wash-history")
+//    public ResponseEntity getUserWashHistory(@PathVariable Integer userId) {
+//        List<Washing> washHistory = usersService.getUserWashHistory(userId);
+//        return ResponseEntity.status(200).body(washHistory);
 
 
-}}
+}

@@ -44,6 +44,13 @@ public class WashingService {
         }
         washingRepository.delete(w);
     }
+    public Washing getWashById(Integer id) {
+        Washing w = washingRepository.findWashingById(id);
+        if (w == null) {
+            throw new ApiException("washing not found");
+        }
+        return w;
+    }
 
     public List<Washing> searchByStatus(String status) {
         List<Washing> Washes = washingRepository.searchByStatus(status);
@@ -60,10 +67,6 @@ public class WashingService {
         }
         return Washes;
     }
-
-
-
-
 
 
 

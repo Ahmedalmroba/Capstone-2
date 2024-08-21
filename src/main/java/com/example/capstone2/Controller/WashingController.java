@@ -26,20 +26,14 @@ public class WashingController {
 
     @PostMapping("/add")
     public ResponseEntity addWashing(@Valid @RequestBody Washing washing, Errors errors) {
-        if (errors.hasErrors()) {
-            String Message = errors.getFieldError().getDefaultMessage();
-            return ResponseEntity.status(400).body(Message);
-        }
+
         washingService.addWashing(washing);
         return ResponseEntity.status(200).body("Washing added");
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity updateWashing(@PathVariable Integer id, @RequestBody Washing washing, Errors errors) {
-        if (errors.hasErrors()) {
-            String Message = errors.getFieldError().getDefaultMessage();
-            return ResponseEntity.status(400).body(Message);
-        }
+    public ResponseEntity updateWashing(@PathVariable Integer id, @RequestBody Washing washing) {
+
         washingService.updateWashing(id, washing);
         return ResponseEntity.status(200).body("Washing updated");
     }
@@ -48,6 +42,11 @@ public class WashingController {
     public ResponseEntity deleteWashing(@PathVariable Integer id) {
         washingService.deleteWashing(id);
         return ResponseEntity.status(200).body("Washing deleted");
+    }
+    @GetMapping("/getWashing/{id}")
+    public ResponseEntity getWashing(@PathVariable Integer id) {
+        washingService.getWashById(id);
+        return ResponseEntity.status(200).body(washingService.getWashById(id));
     }
 
     @GetMapping("status/{status}")

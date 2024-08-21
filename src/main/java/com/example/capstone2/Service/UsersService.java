@@ -14,18 +14,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UsersService {
     private final UsersRepository usersRepository;
-  private final WashingRepository washingRepository;
-
+   private final WashingRepository washingRepository;
 
     public List<Users> getAllUsers() {
         return usersRepository.findAll();
     }
 
-
     public void addUser(Users user) {
         usersRepository.save(user);
     }
-
 
     public void updateUser(Integer id,Users user) {
         Users u = usersRepository.findUsersById(id);
@@ -46,18 +43,20 @@ public class UsersService {
         usersRepository.delete(u);
     }
 
-    public List<Washing> getUserWashHistory(Integer userId) {
-        // Ensure the user exists
-        Users user = usersRepository.findUsersById(userId);
-        if (user == null) {
-            throw new ApiException("User not found");
-        }
-
-        // Retrieve and return the user's washing history
-        return washingRepository.findByUserId(userId);
-
-
-}}
+//    public List<Washing> getUserWashHistory(Integer userId) {
+//
+//        Users user = usersRepository.findUsersById(userId);
+//        if (user == null) {
+//            throw new ApiException("User not found");
+//        }
+//
+//
+//        return washingRepository.findByUserId(userId);
+//
+//
+//
+//
+}
 
 
 

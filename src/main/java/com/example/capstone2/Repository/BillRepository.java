@@ -11,15 +11,21 @@ import java.util.List;
 public interface BillRepository extends JpaRepository<Bill, Integer> {
     Bill findBillById(Integer id);
 
-    @Query("SELECT COUNT(b) FROM Bill b WHERE b.userId = ?1 AND b.washingId = ?2")
-    int countByUserIdAndWashingId(Integer userId, Integer washingId);
+   int countByUserIdAndWashId(Integer userId, Integer washId);
 
-    // Custom query to find the first bill, used as a template
-    @Query("SELECT b FROM Bill b ORDER BY b.id ASC")
-    Bill findFirstByOrderByIdAsc();
-
-    List<Bill> findMostFrequentWashTypeByUserId(Integer userId,Integer washingId);
-
-
-
+    @Query("SELECT w.typeWashing FROM Bill b JOIN Washing w ON b.washingId = w.id WHERE b.userId = :userId GROUP BY w.typeWashing ORDER BY COUNT(w.typeWashing) DESC")
+    String findMostFrequentWashTypeByUserId( Integer userId);
 }
+
+//    @Query("SELECT COUNT(b) FROM Bill b WHERE b.userId = ?1 AND b.washingId = ?2")
+//    int countByUserIdAndWashingId(Integer userId, Integer washingId);
+//
+//
+//    @Query("SELECT b FROM Bill b ORDER BY b.id ASC")
+//    Bill findFirstByOrderByIdAsc();
+
+//    List<Bill> findMostFrequentWashTypeByUserId(Integer userId,Integer washingId);
+//
+//
+
+
